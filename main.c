@@ -9,8 +9,16 @@
 int main() {
 	char *user_input;
 	char *args[64];
+	char cwd[1024];
+	char previous[1024] = " ";
 	while (1) {
-		char *user_input = readline("  > ");
+		if (getcwd(cwd, sizeof(cwd)) == NULL) {
+            perror("getcwd failed");
+            strcpy(cwd, "?"); // fallback
+        }
+		char prompt[1050];
+		snprintf(prompt, sizeof(prompt), " %s > ", getcwd(cwd, sizeof(cwd)));
+		char *user_input = readline(prompt);
 		char* token = strtok(user_input, " ");
 		int i = 0;
 		while (token != NULL) {
@@ -23,16 +31,20 @@ int main() {
 		if (args[0] == NULL) {
 			continue;
 		}
-		
 		if (strcmp(args[0], "cd") == 0) {
-			chdir(args[1]);
-			if (chdir(args[1]) != 0) {	
-				perror("directory doesn't exist");
+			char temp[1024];
+			strcpy(cwd, temp);
+			
+			if (args[1] == NULL) {	
+				chdir(getenv("HOME"));
+			} else if (strcmp(args[1], "-") == 0){
+				chdir(temp);
+			} else {
+				chdir(args[1]);
 			}
+			strcpy(previous, temp);
 			continue;
-		} else if (strcmp(args[0], "cd") == 0 && args[1] == NULL) {
-			chdir(getenv("HOME"));
-		}
+		} 
 		
 		if (strcmp(args[0], "exit") == 0) {
 			break; // exit the shell loop
@@ -52,7 +64,7 @@ int main() {
 		if (user_input && *user_input) {
 		 add_history(user_input);
 		}
+		free(user_input);
 	}
-	free(user_input);
 	return 0;
 }
