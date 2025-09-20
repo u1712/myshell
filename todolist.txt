@@ -4,17 +4,17 @@
 
 These are usually required for a minimal shell:
 
-* [ ] **Prompt** that shows up repeatedly (e.g., `myshell >` or with `getcwd()`).
-* [ ] **Read user input** (e.g., with `readline()` or `fgets()`).
-* [ ] **Parse command line** into program + arguments.
-* [ ] **Execute external commands** using `fork()` + `execvp()`.
-* [ ] **Wait for child process** with `wait()` / `waitpid()`.
-* [ ] Handle **`exit`** command to quit the shell.
-* [ ] Handle **`cd <dir>`** (change directory).
-* [ ] Handle **`cd` with no argument** (go to `$HOME`).
-* [ ] Handle **`cd -`** (go back to previous directory).
-* [ ] Handle errors properly (`perror()` when command fails).
-* [ ] Avoid memory leaks (`free()` allocated memory).
+* [X] **Prompt** that shows up repeatedly (e.g., `myshell >` or with `getcwd()`).
+* [X] **Read user input** (e.g., with `readline()` or `fgets()`).
+* [X] **Parse command line** into program + arguments.
+* [X] **Execute external commands** using `fork()` + `execvp()`.
+* [X] **Wait for child process** with `wait()` / `waitpid()`.
+* [X] Handle **`exit`** command to quit the shell.
+* [X] Handle **`cd <dir>`** (change directory).
+* [X] Handle **`cd` with no argument** (go to `$HOME`).
+* [X] Handle **`cd -`** (go back to previous directory).
+* [X] Handle errors properly (`perror()` when command fails).
+* [X] Avoid memory leaks (`free()` allocated memory).
 
 ---
 
@@ -22,12 +22,12 @@ These are usually required for a minimal shell:
 
 These make your shell usable and closer to Bash:
 
-* [ ] **Show current directory in prompt** (`getcwd()`).
-* [ ] **Add history support** (`readline` + `add_history()`).
-* [ ] **Support `PATH` lookup** (so `ls` works without `./ls`).
-* [ ] **Handle environment variables** (`getenv`, `setenv`, `unsetenv`, `printenv`).
-* [ ] **Handle `~` expansion** (`cd ~` goes to `$HOME`).
-* [ ] **Background processes** (`command &`) → don’t wait for them.
+* [X] **Show current directory in prompt** (`getcwd()`).
+* [X] **Add history support** (`readline` + `add_history()`).
+* [X] **Support `PATH` lookup** (so `ls` works without `./ls`).
+* [X] **Handle environment variables** (`getenv`, `setenv`, `unsetenv`, `printenv`).
+* [X] **Handle `~` expansion** (`cd ~` goes to `$HOME`).
+* [-] **Background processes** (`command &`) → don’t wait for them.
 * [ ] **Signal handling**:
 
   * [ ] Ignore `Ctrl+C` in the shell itself.
