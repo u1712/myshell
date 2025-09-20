@@ -1,0 +1,90 @@
+Nice 👌 — a **checklist for a custom shell project** is a great way to stay organized. I’ll give you a structured list, starting from **basic must-haves**, then **intermediate features**, and finally **advanced/bonus features** (if you want to impress teachers or go beyond).
+
+---
+
+## ✅ **Basic Features (Core Shell Functionality)**
+
+These are usually required for a minimal shell:
+
+* [ ] **Prompt** that shows up repeatedly (e.g., `myshell >` or with `getcwd()`).
+* [ ] **Read user input** (e.g., with `readline()` or `fgets()`).
+* [ ] **Parse command line** into program + arguments.
+* [ ] **Execute external commands** using `fork()` + `execvp()`.
+* [ ] **Wait for child process** with `wait()` / `waitpid()`.
+* [ ] Handle **`exit`** command to quit the shell.
+* [ ] Handle **`cd <dir>`** (change directory).
+* [ ] Handle **`cd` with no argument** (go to `$HOME`).
+* [ ] Handle **`cd -`** (go back to previous directory).
+* [ ] Handle errors properly (`perror()` when command fails).
+* [ ] Avoid memory leaks (`free()` allocated memory).
+
+---
+
+## ⚙️ **Intermediate Features (Real Shell Behavior)**
+
+These make your shell usable and closer to Bash:
+
+* [ ] **Show current directory in prompt** (`getcwd()`).
+* [ ] **Add history support** (`readline` + `add_history()`).
+* [ ] **Support `PATH` lookup** (so `ls` works without `./ls`).
+* [ ] **Handle environment variables** (`getenv`, `setenv`, `unsetenv`, `printenv`).
+* [ ] **Handle `~` expansion** (`cd ~` goes to `$HOME`).
+* [ ] **Background processes** (`command &`) → don’t wait for them.
+* [ ] **Signal handling**:
+
+  * [ ] Ignore `Ctrl+C` in the shell itself.
+  * [ ] Allow `Ctrl+C` to kill child processes.
+* [ ] **Multiple spaces/tabs** in command parsing.
+* [ ] **Comments support** (ignore input after `#`).
+
+---
+
+## 🚀 **Advanced Features (Bonus/Extra Credit)**
+
+These are not always required, but make your shell very cool:
+
+* [ ] **Pipes** (`ls | grep txt`).
+* [ ] **Redirection**:
+
+  * [ ] Output redirection (`>`).
+  * [ ] Input redirection (`<`).
+  * [ ] Append (`>>`).
+* [ ] **Chaining commands**:
+
+  * [ ] Sequential (`;`).
+  * [ ] Conditional (`&&`, `||`).
+* [ ] **Job control**:
+
+  * [ ] Suspend/resume jobs (`Ctrl+Z`, `fg`, `bg`).
+* [ ] **Tab completion** (with `readline`’s completion hooks).
+* [ ] **Custom built-ins** like:
+
+  * `pwd`
+  * `echo`
+  * `help`
+  * `alias` / `unalias`.
+* [ ] **Configuration file** (like `.myshellrc`).
+* [ ] **Colorized prompt** (user\@host, current dir, etc.).
+
+---
+
+## 📝 **Project Hygiene**
+
+Things teachers often grade too:
+
+* [ ] **Clean code** (well-structured functions, not all in `main()`).
+* [ ] **Error handling** (check return values of `malloc`, `fork`, `execvp`, etc.).
+* [ ] **Memory management** (use `valgrind` to check leaks).
+* [ ] **Modularity** (separate parsing, execution, built-ins into different functions/files).
+* [ ] **Documentation** (README explaining features).
+* [ ] **Test cases** (script that runs common commands and checks output).
+
+---
+
+⚡ If you stick to **Basic + Intermediate**, you’ll already have a very solid `myshell`.
+If you add **a couple Advanced features**, it’ll stand out.
+
+---
+
+👉 Do you want me to turn this into a **step-by-step roadmap** (like “first implement X, then add Y, then Z”), so you can build your shell incrementally without getting lost?
+

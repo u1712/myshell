@@ -12,6 +12,7 @@ int main() {
 	char cwd[1024];
 	char previous[1024] = " ";
 	while (1) {
+		read_history(".myshell_history");
 		if (getcwd(cwd, sizeof(cwd)) == NULL) {
             perror("getcwd failed");
             strcpy(cwd, "?"); // fallback
@@ -33,12 +34,14 @@ int main() {
 		}
 		if (strcmp(args[0], "cd") == 0) {
 			char temp[1024];
-			strcpy(cwd, temp);
-			
-			if (args[1] == NULL) {	
+			strcpy(temp, cwd);
+
+			if ((args[1] == NULL) || (strcmp(args[1], "~") == 0)) {	
 				chdir(getenv("HOME"));
+				continue;
 			} else if (strcmp(args[1], "-") == 0){
-				chdir(temp);
+				chdir(previous);
+				continue;
 			} else {
 				chdir(args[1]);
 			}
@@ -59,11 +62,17 @@ int main() {
 			perror("execvp failed");
 			exit(1);
 		} else {
-			wait(NULL);
+			if (strcmp(args[i-1], "&") == 0) {
+				continue;
+			}
+			else {
+				wait(NULL);
+			}
 		}
 		if (user_input && *user_input) {
 		 add_history(user_input);
 		}
+		write_history(".myshell_history");
 		free(user_input);
 	}
 	return 0;
